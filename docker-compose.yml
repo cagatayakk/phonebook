@@ -18,6 +18,8 @@ services:
 
   app-server:
     image: 753562699870.dkr.ecr.us-east-1.amazonaws.com/cagatayakk/phonebook-app:latest
+    depends_on:
+      - database
     deploy:
       mode: global
       update_config:
