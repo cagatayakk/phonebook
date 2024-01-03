@@ -50,6 +50,9 @@ pipeline {
     }
 
     post {
+        success {
+            echo 'Başarılı bir şekilde tamamlandı'
+        }
         always {
             echo 'Deleting all local images'
             sh 'docker stack rm phonebook'
