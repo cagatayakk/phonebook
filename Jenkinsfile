@@ -21,9 +21,11 @@ pipeline {
         stage('Push Image to ECR Repo') {
             steps {
                 echo 'Pushing App Image to ECR Repo'
-                withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+                withDockerRegistry([ credentialsId: "dockerhub", url: "" ])
+                 {
                 sh 'docker push "$REGISTRY/$APP_REPO_NAME:latest"'
             }
+        }
         }
 
         stage('Deploy the App') {
