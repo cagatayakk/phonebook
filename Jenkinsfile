@@ -49,24 +49,5 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            echo 'Başarılı bir şekilde tamamlandı'
-        }
-        always {
-            echo 'Deleting all local images'
-            sh 'docker stack rm phonebook'
-            sh 'docker image prune -af'
-        }
-        failure {
 
-            echo 'Delete the Image Repository on ECR due to the Failure'
-            sh """
-                aws ecr delete-repository \
-                  --repository-name ${APP_REPO_NAME} \
-                  --region ${AWS_REGION}\
-                  --force
-                """
-        }
-    }
 }
