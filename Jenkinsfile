@@ -5,8 +5,8 @@ pipeline {
             AWS_REGION = "us-east-1"
             AWS_ACCOUNT_ID=sh(script:'export PATH="$PATH:/usr/local/bin" && aws sts get-caller-identity --query Account --output text', returnStdout:true).trim()
             ECR_REGISTRY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
-            APP_REPO_NAME = "cagatayakk/phonebook-app"
-            APP_NAME = "phonebook"
+            APP_REPO_NAME = "todo-app"
+            APP_NAME = "to-do"
         }
 
     stages {
@@ -44,7 +44,7 @@ pipeline {
         stage('Deploy the App') {
             steps {
                 echo 'Deploy the App'
-                sh 'docker stack deploy -c docker-compose.yml phonebook'
+                sh 'docker run -p 80:3000 753562699870.dkr.ecr.us-east-1.amazonaws.com/todo-app:latest'
              }
         }
     }

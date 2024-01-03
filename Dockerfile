@@ -1,6 +1,5 @@
-FROM python:alpine
-COPY . /app
+FROM node:12-alpine
 WORKDIR /app
-RUN pip install -r requirements.txt
-EXPOSE 80
-CMD python ./phonebook-app.py 
+COPY . .
+RUN yarn install --production
+CMD ["node", "/app/src/index.js"]
