@@ -47,6 +47,7 @@ pipeline {
                 sh 'docker stack deploy -c docker-compose.yml phonebook'
              }
         }
+    }
 
     post {
         always {
@@ -64,6 +65,5 @@ pipeline {
                   --force
                 """
         }
-    }
     }
 }
