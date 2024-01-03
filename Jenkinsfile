@@ -44,7 +44,7 @@ pipeline {
         stage('Deploy the App') {
             steps {
                 echo 'Deploy the App'
-                sh 'docker run -p 80:3000 "$ECR_REGISTRY/$APP_REPO_NAME:latest"'
+                sh 'docker run -d -p 80:3000 "$ECR_REGISTRY/$APP_REPO_NAME:latest"'
              }
         }
     }
